@@ -1,0 +1,26 @@
+# feeder
+feeder: feeders.feeder.Feeder
+test_feeder_args:
+  data_path: ./data/val_object_tiny.npy
+  label_path: ./data/val_label_tiny.pkl
+  debug: False
+
+# model
+model: model.agcn_object.Model
+model_args:
+  num_class: 120
+  num_point: 25
+  num_person: 2
+  graph: graph.ntu_rgb_d.Graph
+  graph_args:
+    labeling_mode: 'spatial'
+
+# test
+phase: test
+device: [0,1]
+test_batch_size: 64
+weights: ./weights/ntu120_setup_tiny/run_object/ntu120-19-19000.pt
+
+work_dir: ./weights/ntu120_setup_tiny/work_dir_object/ntu120
+model_saved_name: ./weights/ntu120_setup_tiny/run_object/ntu120
+save_score: True
